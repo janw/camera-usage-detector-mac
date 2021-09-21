@@ -136,10 +136,14 @@ class CameraUsageController {
             urlKey = "cameraOnURL"
         }
         if let url = UserDefaults.standard.url(forKey: urlKey) {
+            var request = URLRequest(url: url)
             
+            if let requestType = UserDefaults.standard.string(forKey: "requestType") {
+                request.httpMethod = requestType
+            }
             
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                print("done updating")
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                print("Done updating via \(request.httpMethod!) request")
             }.resume()
         }
 

@@ -34,3 +34,6 @@
 "uQy-DD-JDr.title" = "CameraUsage";
 /* Class = "NSTextFieldCell"; title = "SELECT_CAMERA"; ObjectID = "epq-7H-3io"; */
 "YLS-hI-VGI.title" = "Aktive Webcam:";
+
+/* Class = "NSTextFieldCell"; title = "Request Type:"; ObjectID = "Kqe-Dd-gMq"; */
+"Kqe-Dd-gMq.title" = "Request-Typ:";

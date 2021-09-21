@@ -36,3 +36,6 @@
 
 /* Class = "NSTextFieldCell"; title = "SELECT_CAMERA"; ObjectID = "epq-7H-3io"; */
 "YLS-hI-VGI.title" = "Active camera:";
+
+/* Class = "NSTextFieldCell"; title = "Request Type:"; ObjectID = "Kqe-Dd-gMq"; */
+"Kqe-Dd-gMq.title" = "Request Type:";

@@ -21,10 +21,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var cameraOnURLField: NSTextField!
     @IBOutlet weak var cameraOffURLField: NSTextField!
     
+    @IBOutlet weak var requestTypePopup: NSPopUpButton!
+    
     @IBOutlet weak var cameraSelectorPopup: NSPopUpButton!
     
     var selectedCameraId :UInt32 = 0
-    
+    var selectedRequestType :String = RequestType.get.rawValue
+
     let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -108,6 +111,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         self.cameraSelectorPopup.selectItem(withTag: Int(self.selectedCameraId))
         
+        self.requestTypePopup.removeAllItems()
+
+        for type in RequestType.allCases {
+            let requestTypeMenuItem = NSMenuItem(title: type.rawValue, action: nil, keyEquivalent: "")
+            self.requestTypePopup.menu?.addItem(requestTypeMenuItem)
+        }
+        self.requestTypePopup.selectItem(withTitle: self.selectedRequestType)
+
+        
 
         if let cameraOnURLString = UserDefaults.standard.url(forKey: "cameraOnURL")?.absoluteString {
             self.cameraOnURLField.stringValue = cameraOnURLString
@@ -123,6 +135,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.set(self.selectedCameraId, forKey: "selectedCameraId")
         print("saving selected camera id \(self.selectedCameraId)")
         
+        self.selectedRequestType = self.requestTypePopup.selectedItem!.title
+        UserDefaults.standard.set(selectedRequestType, forKey: "requestType")
         
         if let cameraOnURL = URL(string: self.cameraOnURLField.stringValue) {
             UserDefaults.standard.set(cameraOnURL, forKey: "cameraOnURL")
